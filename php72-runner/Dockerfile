@@ -122,10 +122,10 @@ RUN curl -sS https://getcomposer.org/installer | php \
     && /usr/local/bin/composer global require hirak/prestissimo
 
 # Install phpunit and put binary into $PATH
-RUN curl -sSLo phpunit.phar https://phar.phpunit.de/phpunit.phar \
-    && chmod 755 phpunit.phar \
-    && mv phpunit.phar /usr/local/bin/ \
-    && ln -s /usr/local/bin/phpunit.phar /usr/local/bin/phpunit
+RUN wget https://phar.phpunit.de/phpunit-7.5.phar \
+    && chmod +x phpunit-7.5.phar \
+    && sudo mv phpunit-7.5.phar /usr/local/bin/phpunit
+    && ln -s /usr/local/bin/phpunit-7.5.phar /usr/local/bin/phpunit
 
 # Install PHP Code sniffer
 RUN curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar \
