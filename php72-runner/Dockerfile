@@ -124,7 +124,7 @@ RUN curl -sS https://getcomposer.org/installer | php \
 # Install phpunit and put binary into $PATH
 RUN wget https://phar.phpunit.de/phpunit-7.5.phar \
     && chmod +x phpunit-7.5.phar \
-    && sudo mv phpunit-7.5.phar /usr/local/bin/phpunit
+    && sudo mv phpunit-7.5.phar /usr/local/bin/phpunit \
     && ln -s /usr/local/bin/phpunit-7.5.phar /usr/local/bin/phpunit
 
 # Install PHP Code sniffer
