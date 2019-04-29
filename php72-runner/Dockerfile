@@ -8,6 +8,7 @@ RUN additionalPackages=" \
         msmtp-mta \
         openssh-client \
         rsync \
+        wget \
     " \
     buildDeps=" \
         freetds-dev \
@@ -124,17 +125,19 @@ RUN curl -sS https://getcomposer.org/installer | php \
 # Install phpunit and put binary into $PATH
 RUN wget https://phar.phpunit.de/phpunit-7.5.phar \
     && chmod +x phpunit-7.5.phar \
-    && sudo mv phpunit-7.5.phar /usr/local/bin/phpunit \
-    && ln -s /usr/local/bin/phpunit-7.5.phar /usr/local/bin/phpunit
+    && mv phpunit-7.5.phar /usr/local/bin/phpunit 
 
 # Install PHP Code sniffer
 RUN curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar \
-    && chmod 755 phpcs.phar \
-    && mv phpcs.phar /usr/local/bin/ \
-    && ln -s /usr/local/bin/phpcs.phar /usr/local/bin/phpcs \
-    && curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar \
-    && chmod 755 phpcbf.phar \
-    && mv phpcbf.phar /usr/local/bin/ \
+    && chmod 755 phpcs.phar
+    
+RUN mv phpcs.phar /usr/local/bin/ \
+    && ln -s /usr/local/bin/phpcs.phar /usr/local/bin/phpcs 
+
+RUN curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar \
+    && chmod 755 phpcbf.phar 
+
+RUN mv phpcbf.phar /usr/local/bin/ \
     && ln -s /usr/local/bin/phpcbf.phar /usr/local/bin/phpcbf
 
 # Install Node.js & Yarn
